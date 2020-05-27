@@ -30,7 +30,7 @@ void SniperCommander:: move(std::vector<std::vector<Soldier *>> &board, std::pai
     }
     // now hit the player with the maximum health in the rival soldiers.
     board[maxI][maxJ]->setDamge(getDamge());
-    if(!isAlive()){
+    if(!board[maxI][maxJ]->isAlive()){
         delete (board[maxI][maxJ]);
         board[maxI][maxJ] = nullptr;
     }
@@ -40,9 +40,9 @@ void SniperCommander:: move(std::vector<std::vector<Soldier *>> &board, std::pai
     for(int i=0;i<board.size();i++){
         for(int j=0;j<board[i].size();j++){
             // checking if its Sniper and if its mine.
-            if(typeid(board[i][j])==typeid(Sniper) &&board[i][j]->getPlayer()==player){
+              if( board[i][j] != nullptr && board[i][j]->getName() == std::string("Sniper") && board[i][j]->getPlayer()==player){
                 // if its Sniper make cast to it
-                board[i][j]=(dynamic_cast<Sniper*>(board[i][j]));
+                //board[i][j]=(dynamic_cast<Sniper*>(board[i][j]));
                 board[i][j]->move(board,_currentPos);
 
             }
@@ -56,5 +56,5 @@ SniperCommander:: ~SniperCommander(){
 }
 
 int SniperCommander::getDamge(){
-    return this->getDamge();
+    return this->_damage;
 }

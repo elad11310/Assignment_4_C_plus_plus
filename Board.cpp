@@ -58,6 +58,10 @@ void WarGame::Board::move(uint player_number, std::pair<int, int> source, MoveDI
 
 
         }
+else {
+	throw std:: invalid_argument("Not a vaild a move");
+}
+
     }
 
 
